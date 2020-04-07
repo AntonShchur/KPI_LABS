@@ -8,14 +8,16 @@ namespace Lab_4
         static void Main(string[] args)
         {
             Directory directory1 = new Directory("Dir1",100);
-            Console.WriteLine("Розмір директорії: "+directory1.Size);
             File zip_file = new File("Zip111", 10, ".zip");
             File mp3_file = new File("mp333", 50, ".mp3");
             File text_file = new File("text", 150, ".txt");
-            directory1.AddFile(zip_file);
+            File zip2_file = new File("Zip222", 30, ".zip");
+            Console.WriteLine("Розмір директорії: "+directory1.Size);//Розмір директорії
+            directory1.AddFile(zip_file);//Додавання файлу
+            directory1.AddFile(zip2_file);//Додавання файлу
             directory1.AddFile(zip_file);//Сповіщення про наявність файлу
-            directory1.AddFile(mp3_file);//Сповіщення про переповнення
-            mp3_file.RunFile();
+            directory1.AddFile(text_file);//Сповіщення про переповнення
+            zip_file.RunFile();
             Console.WriteLine("К-сть файлів в директорії: "+directory1.CountOfFiles()); 
 
 
@@ -42,6 +44,8 @@ namespace Lab_4
                 } 
             }
             public int fullness = 0;
+            abstract public void AddFile(File file);
+            
         }
         class Directory : Disk
         {
@@ -51,25 +55,30 @@ namespace Lab_4
                 name = DirName;
                 Size = DirSize;
             } 
-            public void AddFile(File file)
+            public override void AddFile(File file)
             {
+                bool isFileExist = false;
                 foreach(File f in FileList)
                 {
-                    if((f.name + f.typeOfFile) == file.name + file.typeOfFile)
+                    if ((f.name + f.typeOfFile) == file.name + file.typeOfFile)
                     {
                         Console.WriteLine("Даний файл існує");
+                        isFileExist = true;
                     }
                 }
-                if (fullness + file.Size >= Size)
+                if (!isFileExist)
                 {
-                    Console.WriteLine("Директорія переповнена, неможливо додати файл");
+                    if ((fullness + file.Size) >= Size)
+                    {
+                        Console.WriteLine("Директорія переповнена, неможливо додати файл");
+                    }
+                    else
+                    {
+                        FileList.Add(file);
+                        fullness += file.Size;
+                        Console.WriteLine("Файл додано");
+                    }
                 }
-                else
-                {
-                    FileList.Add(file);
-                    fullness += file.Size;
-                    Console.WriteLine("Файл додано");
-                }    
             }
             public void RemoveFile(File file)
             {
