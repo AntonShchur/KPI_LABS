@@ -1,0 +1,13 @@
+G:\C#\Labs\Lab_1_Algorithm\Zero_finder\bin\Debug\netcoreapp3.1\Zero_finder.exe
+G:\C#\Labs\Lab_1_Algorithm\Zero_finder\bin\Debug\netcoreapp3.1\Zero_finder.deps.json
+G:\C#\Labs\Lab_1_Algorithm\Zero_finder\bin\Debug\netcoreapp3.1\Zero_finder.runtimeconfig.json
+G:\C#\Labs\Lab_1_Algorithm\Zero_finder\bin\Debug\netcoreapp3.1\Zero_finder.runtimeconfig.dev.json
+G:\C#\Labs\Lab_1_Algorithm\Zero_finder\bin\Debug\netcoreapp3.1\Zero_finder.dll
+G:\C#\Labs\Lab_1_Algorithm\Zero_finder\bin\Debug\netcoreapp3.1\Zero_finder.pdb
+G:\C#\Labs\Lab_1_Algorithm\Zero_finder\obj\Debug\netcoreapp3.1\Zero_finder.csprojAssemblyReference.cache
+G:\C#\Labs\Lab_1_Algorithm\Zero_finder\obj\Debug\netcoreapp3.1\Zero_finder.AssemblyInfoInputs.cache
+G:\C#\Labs\Lab_1_Algorithm\Zero_finder\obj\Debug\netcoreapp3.1\Zero_finder.AssemblyInfo.cs
+G:\C#\Labs\Lab_1_Algorithm\Zero_finder\obj\Debug\netcoreapp3.1\Zero_finder.csproj.CoreCompileInputs.cache
+G:\C#\Labs\Lab_1_Algorithm\Zero_finder\obj\Debug\netcoreapp3.1\Zero_finder.dll
+G:\C#\Labs\Lab_1_Algorithm\Zero_finder\obj\Debug\netcoreapp3.1\Zero_finder.pdb
+G:\C#\Labs\Lab_1_Algorithm\Zero_finder\obj\Debug\netcoreapp3.1\Zero_finder.genruntimeconfig.cache

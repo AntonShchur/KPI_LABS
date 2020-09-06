@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Zero_finder/1.0.0": {
+        "runtime": {
+          "Zero_finder.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Zero_finder/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
