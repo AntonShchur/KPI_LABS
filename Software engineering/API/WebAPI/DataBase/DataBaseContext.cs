@@ -19,7 +19,7 @@ namespace WebAPI.DataBase.Tables
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-4U17TBP;Database=University;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-4U17TBP;Database=University_NEW;Trusted_Connection=True;");
         }
 
     }

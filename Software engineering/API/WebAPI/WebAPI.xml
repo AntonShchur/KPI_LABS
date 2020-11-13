@@ -1,0 +1,364 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:WebAPI.Controllers.ScheduleController.GetTeachers">
+            <summary>
+            Отримує всіх наявних викладачів університету
+            </summary>
+            <remarks>
+            Отримана відповідь буде у вигляді:
+             
+                [
+                    {
+                      "teacher_Id": Id
+                      "teacher_Same": "Name",
+                      "teacher_Surname": "Surname",
+                      "teacher_Email":"Email",
+                      "teacher_Phone":"Phone number"
+                    },
+                      "teacher_Id": Id
+                      "teacher_Same": "Name",
+                      "teacher_Surname": "Surname",
+                      "teacher_Email":"Email",
+                      "teacher_Phone":"Phone number"
+                    }
+                ]
+            
+            </remarks>
+            <response code="200">Буде повернено, якщо було знайдено хоча б одного викладача</response>
+            <response code="404">Буде повернено, якщо не було знайдено жодного викладача</response>
+        </member>
+        <member name="M:WebAPI.Controllers.ScheduleController.GetTeacher(System.Int32)">
+            <summary>
+            Отримує наявного викладача університету за його ідентифікатором
+            </summary>
+            <remarks>
+            Отримана відповідь буде у вигляді:
+             
+                {
+                    "teacher_Id": Id
+                    "teacher_Same": "Name",
+                    "teacher_Surname": "Surname",
+                    "teacher_Email":"Email",
+                    "teacher_Phone":"Phone number"
+                }
+            
+            </remarks>
+            <param name="id">Ідентифікатор викладача</param>
+            <response code="200">Буде повернено, якщо викладача не було знайдено </response>
+            <response code="404">Буде повернено, якщо не було знайдено викладача</response>
+        </member>
+        <member name="M:WebAPI.Controllers.ScheduleController.GetFaculties">
+            <summary>
+            Отримує всі наявні факультети університета
+            </summary>
+            <remarks>
+            Отримана відповідь буде у вигляді:
+             
+                [
+                    {
+                        "faculty_Id": Id,
+                        "faculty_Name": "Full_Name",
+                        "faculty_Short_Name": "Short_Name"
+                    },
+                    {
+                        "faculty_Id": Id,
+                        "faculty_Name": "Full_Name",
+                        "faculty_Short_Name": "Short_Name"
+                    }   
+                ]
+            
+            </remarks>
+            <response code="200">Буде повернено, якщо було знайдено і повернено хоча б один факультет</response>
+            <response code="404">Буде повернено, якщо не було знайдено жодного факультету </response>
+        </member>
+        <member name="M:WebAPI.Controllers.ScheduleController.GetFaculty(System.Int32)">
+            <summary>
+            Отримує факультет університета за вказаним ідентифікатором
+            </summary>
+            <remarks>
+            Отримана відповідь буде у вигляді:
+             
+                
+                {
+                    "faculty_Id": Id,
+                    "faculty_Name": "Full_Name",
+                    "faculty_Short_Name": "Short_Name"
+                }
+                
+            
+            </remarks>
+            <param name="id">Ідентифікатор факультету</param>
+            <response code="200">Буде повернено, якщо було знайдено і повернено факультет за вказаним ідентифікатором </response>
+            <response code="404">Буде повернено, якщо не було знайдено факультету за вказаним ідентифікатором </response>
+        </member>
+        <member name="M:WebAPI.Controllers.ScheduleController.GetDisciplines">
+            <summary>
+            Отримує всі наявні дисципліни університета
+            </summary>
+            <remarks>
+            Отримана відповідь буде у вигляді:
+             
+                [
+                    {
+                        "discipline_Id": Id,
+                        "discipline_Name": "Name",
+                    },
+                    {
+                        "discipline_Id": Id,
+                        "discipline_Name": "Name",
+                    },
+                ]
+            
+            </remarks>
+            <response code="200">Буде повернено, якщо було знайдено і повернено хоча б одну дисципліну</response>
+            <response code="404">Буде повернено, якщо не було знайдено жодної дисципліни </response>
+        </member>
+        <member name="M:WebAPI.Controllers.ScheduleController.GetDiscipline(System.Int32)">
+            <summary>
+            Отримує дисципліну за вказаним ідентифікатором
+            </summary>
+            <remarks>
+            Отримана відповідь буде у вигляді:
+             
+                
+                {
+                    "discipline_Id": Id,
+                    "discipline_Name": "Name",
+                }
+                
+            
+            </remarks>
+            <param name="id">Ідентифікатор дисципліни</param>
+            <response code="200">Буде повернено, якщо було знайдено і повернено дисципліну за вказаним ідентифікатором</response>
+            <response code="404">Буде повернено, якщо не було знайдено дисципліни за вказаним ідентифікатором </response>
+        </member>
+        <member name="M:WebAPI.Controllers.ScheduleController.GetDepartaments">
+            <summary>
+            Отримує всі наявні кафедри університета
+            </summary>
+            <remarks>
+            Отримана відповідь буде у вигляді:
+             
+                [
+                    {
+                        "departament_Id": Id,
+                        "departament_Name": "Full_Name",
+                        "departament_Short_Name": "Short_Name",
+                        "faculty_Id": Id
+                    },
+                    {
+                        "departament_Id": Id,
+                        "departament_Name": "Full_Name",
+                        "departament_Short_Name": "Short_Name",
+                        "faculty_Id": Id
+                    }
+                ]
+            
+            </remarks>
+            <response code="200">Буде повернено, якщо було знайдено і повернено хоча б одну кафедру</response>
+            <response code="404">Буде повернено, якщо не було знайдено жодної кафедри </response>
+        </member>
+        <member name="M:WebAPI.Controllers.ScheduleController.GetDepartament(System.Int32)">
+            <summary>
+            Отримує кафедру університета за вказаним ідентифікатором
+            </summary>
+            <remarks>
+            Отримана відповідь буде у вигляді:
+             
+                
+                {
+                    "departament_Id": Id,
+                    "departament_Name": "Full_Name",
+                    "departament_Short_Name": "Short_Name",
+                    "faculty_Id": Id
+                }
+                
+            
+            </remarks>
+            <param name="id">Ідентифікатор кафедри</param>
+            <response code="200">Буде повернено, якщо було знайдено і повернено кафедру за вказаним ідентифікатором</response>
+            <response code="404">Буде повернено, якщо не було знайдено кафедри за вказаним ідентифікатором </response>
+        </member>
+        <member name="M:WebAPI.Controllers.ScheduleController.GetGroups">
+            <summary>
+            Отримує всі наявні групи університета
+            </summary>
+            <remarks>
+            Отримана відповідь буде у вигляді:
+             
+                [
+                    {
+                        "group_Id": Id,
+                        "group_Name": "Name",
+                        "group_Course": Course,
+                        "departament_Id": Id
+                    },
+                    {
+                        "group_Id": Id,
+                        "group_Name": "Name",
+                        "group_Course": Course,
+                        "departament_Id": Id
+                    }
+                ]
+            
+            </remarks>
+            <response code="200">Буде повернено, якщо було знайдено і повернено хоча б одну групу</response>
+            <response code="404">Буде повернено, якщо не було знайдено жодної групи </response>
+        </member>
+        <member name="M:WebAPI.Controllers.ScheduleController.GetGroup(System.Int32)">
+            <summary>
+            Отримує групу за вказаним ідентифікатором
+            </summary>
+            <remarks>
+            Отримана відповідь буде у вигляді:
+             
+                {
+                    "group_Id": Id,
+                    "group_Name": "Name",
+                    "group_Course": Course,
+                    "departament_Id": Id
+                }
+            
+            </remarks>
+            <param name="id">Ідентифікатор групи</param>
+            <response code="200">Буде повернено, якщо було знайдено і повернено групу</response>
+            <response code="404">Буде повернено, якщо не було знайдено групу </response>
+        </member>
+        <member name="M:WebAPI.Controllers.ScheduleController.GetStudents">
+            <summary>
+            Отримує всіх наявних студентів університета
+            </summary>
+            <remarks>
+            Отримана відповідь буде у вигляді:
+             
+                [
+                    {
+                        "student_Id": Id,
+                        "student_Name": "Name",
+                        "student_Email": "Emali",
+                        "student_Phone": "Phone number",
+                        "group_Id": Id
+                    },
+                    {
+                        "student_Id": Id,
+                        "student_Name": "Name",
+                        "student_Email": "Emali",
+                        "student_Phone": "Phone number",
+                        "group_Id": Id
+                    }
+                ]
+            
+            </remarks>
+            <response code="200">Буде повернено, якщо було знайдено і повернено хоча б одного студента</response>
+            <response code="404">Буде повернено, якщо не було знайдено жодного студента </response>
+        </member>
+        <member name="M:WebAPI.Controllers.ScheduleController.GetStudent(System.Int32)">
+            <summary>
+            Отримує студента за вказаним ідентифікатором
+            </summary>
+            <remarks>
+            Отримана відповідь буде у вигляді:
+             
+                
+                {
+                    "student_Id": Id,
+                    "student_Name": "Name",
+                    "student_Email": "Emali",
+                    "student_Phone": "Phone number",
+                    "group_Id": Id
+                }
+                
+            
+            </remarks>
+            <param name="id">Ідентифікатор студента</param>
+            <response code="200">Буде повернено, якщо студента було знайдено і повернено</response>
+            <response code="404">Буде повернено, якщо студента не було знайдено </response>
+        </member>
+        <member name="M:WebAPI.Controllers.ScheduleController.GetSchedules">
+            <summary>
+            Отримує всі наявні розклади університета
+            </summary>
+            <remarks>
+            Отримана відповідь буде у вигляді:
+             
+                [
+                    {
+                        "schedule_Id": Id,
+                        "schedule_Name": "Name",
+                        "schedule_Time": "Emali",
+                        "schedule_Classroom": "Phone number",
+                        "group_Id": Id,
+                        "teacher_Id": Id,
+                        "discipline_Id": Id
+                    },
+                    {
+                        "schedule_Id": Id,
+                        "schedule_Name": "Name",
+                        "schedule_Time": "Emali",
+                        "schedule_Classroom": "Phone number",
+                        "group_Id": Id,
+                        "teacher_Id": Id,
+                        "discipline_Id": Id
+                    }
+                ]
+            
+            </remarks>
+            <response code="200">Буде повернено, якщо було знайдено і повернено хоча б один розклад</response>
+            <response code="404">Буде повернено, якщо не було знайдено жодного розкладу </response>
+        </member>
+        <member name="M:WebAPI.Controllers.ScheduleController.GetSchedule(System.Int32)">
+            <summary>
+            Отримує детальний розклад за вказаним ідентифікатором
+            </summary>
+            <remarks>
+            Отримана відповідь буде у вигляді:
+             
+                
+                {
+                    "schedule_Id": Id,
+                    "schedule_Name": "Name",
+                    "schedule_Time": "Time",
+                    "schedule_Classroom": "Classroom",
+                    "group_Id": group_Id,
+                    "group_Name": "group_Name",
+                    "teacher_Id": teacher_Id,
+                    "teacher_Name": "teacher_Name",
+                    "discipline_Id": discipline_Id,
+                    "discipline_Name": "discipline_Name"
+                }
+                
+            
+            </remarks>
+            <param name="id">Ідентифікатор розкладу</param>
+            <response code="200">Буде повернено, якщо розклад знайдено і повернено</response>
+            <response code="404">Буде повернено, якщо розкладу не було знайдено </response>
+        </member>
+        <member name="M:WebAPI.Controllers.ScheduleController.DeleteSchedule(System.Int32)">
+            <summary>
+            Видаляє розклад за вказаним ідентифікатором
+            </summary>
+            <param name="id">Ідентифікатор розкладу</param>
+            <response code="200">Буде повернено, якщо розклад знайдено і видалено </response>
+            <response code="404">Буде повернено, якщо розкладу не було знайдено або його вже видалили </response>
+        </member>
+        <member name="M:WebAPI.Controllers.ScheduleController.CreateSchedule(WebAPI.DataBase.Tables.Schedule)">
+            <summary>
+            Створює розклад 
+            </summary>
+            <response code="200">Буде повернено, якщо розклад було успішно створено</response>
+            <response code="400">Буде повернено, якщо даний розклад не коректний </response>
+        </member>
+        <member name="M:WebAPI.Controllers.ScheduleController.UpdateSchedule(WebAPI.DataBase.Tables.Schedule,System.Int32)">
+            <summary>
+            Оновлює розклад
+            </summary>
+            <param name="id">Ідентифікатор розкладу</param>
+            <response code="200">Буде повернено, якщо розклад було успішно оновлено</response>
+            <response code="404">Буде повернено, якщо розклад, який треба оновити не знайдено </response>
+        </member>
+    </members>
+</doc>
