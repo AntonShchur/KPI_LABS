@@ -1,19 +1,19 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 import math
 import statistics as st
+import prettytable as pt
 
 
 def import_data(filename):
-    dataframe = pd.read_csv(filename, delimiter=',', header=None)
-    return dataframe
+    return np.genfromtxt(filename, delimiter=',', dtype=int)
 
 
-data = import_data('lab2.csv').values[0]
+data = import_data('lab1.csv')
 
 
 def variation_range(input_array):
+
     input_array.sort()
     simple_var_range = dict()
     for number in input_array:
@@ -29,67 +29,82 @@ def variation_range(input_array):
 
     return list(simple_var_range.keys()),\
            list(simple_var_range.values()),\
-           list(freq_var_range.keys()),\
            list(freq_var_range.values())
 
 
-s1, s2, f1, f2 = variation_range(data)
-
-print(f'{s1}\n{s2}\n{f1}\n{f2}\n')
+s1, s2, f1 = variation_range(data)
 
 
-def interval_variation_range(input_array, intervals_count):
-    plt.style.use('seaborn-white')
-    ax = plt.subplot()
-    ax.set_xticks([45,50,55])
+def histogram(input_array, intervals_count, draw_histogram=True):
+    x, bins = interval_variation_range(input_array, intervals_count)
+    fig, ax = plt.subplots()
+    x, bins, y = plt.hist(input_array, bins=bins, edgecolor='black')
+    ax.set_xticks(bins)
+    ax.set_title('Гістограма частот')
+    ax.set_xlabel('Інтервали')
+    ax.set_ylabel('Кількість')
+    if draw_histogram:
+        plt.show()
+
+
+def interval_variation_range(input_array, intervals_count, print_table=False):
     min_num = np.min(input_array)
     max_num = np.max(input_array)
-    interval_length = (max_num - min_num) // intervals_count
-    print(interval_length)
-    intervals = list()
-    a = min_num
-    while a < max_num:
-        intervals.append(a)
-        a += interval_length
-    print(intervals)
-    print(f'Групування: {list(range(min_num, max_num, interval_length))}')
-    n = math.ceil((max_num - min_num)/interval_length)
-    x, bins, y = plt.hist(input_array,bins=11,rwidth=3,edgecolor='black')
-    print(bins)
+    interval_length = (max_num - min_num) / intervals_count
+    n = math.ceil((max_num - min_num) / interval_length)
+    x, bins = np.histogram(input_array, bins=n)
+    range_column = []
+    number_column = x
+    for i in range(1, len(bins)):
+        range_column.append(f'{np.round(bins[i-1],2)}-{np.round(bins[i],2)}')
+    table = pt.PrettyTable()
+    table.add_column('Інтервали', range_column)
+    table.add_column('К-сть входжень', number_column)
+    if print_table:
+        print(table)
+    return x, bins
 
+
+# histogram(data, 11, draw_histogram=True)
+
+
+def numerical_characteristic(input_data):
+    mode = st.mode(input_data)
+    median = st.median(input_data)
+    mean = st.mean(input_data)
+    scope = np.max(input_data) - np.min(input_data)
+    Q1 = np.percentile(input_data, 25, interpolation='midpoint')
+    Q2 = np.percentile(input_data, 50, interpolation='midpoint')
+    Q3 = np.percentile(input_data, 75, interpolation='midpoint')
+    Q_scope = Q3 - Q1
+    variance = st.variance(input_data)
+    std = st.stdev(input_data)
+
+    return mode, median, mean, scope, Q1, Q2, Q3, Q_scope, variance, std
+
+
+numerical_characteristic(data)
+
+
+def ECD_function(input_data):
+
+    x, bins = interval_variation_range(input_data, 8)
+    x = x / len(input_data)
+
+    plt.clf()
+    ax = plt.subplots()[1]
+    ax.set_xticks(bins)
+    ax.set_xlabel('Інтервали')
+    plt.title('Імперична функція розподілу для інтервального ряду')
+    y = x.cumsum()
+    for i in range(len(y)):
+        plt.plot([bins[i], bins[i+1]],[y[i], y[i]], c="black")
     plt.show()
 
 
-def numerical_characteristic(input_array):
-    mode = st.mode(input_array)
-    median = st.median(input_array)
-    mean = st.mean(input_array)
-    scope = np.max(input_array) - np.min(input_array)
-    Q1 = np.percentile(data, 25, interpolation='midpoint')
-
-    return mode, median
+ECD_function(data)
 
 
-# print(numerical_characteristic(data)[1])
-#
-# interval_variation_range(data,9)
-
-def function(input_data):
-
-    numbers = variation_range(input_data)[2]
-    freq_range = variation_range(input_data)[3]
-    print(freq_range)
-    sum = 0
-    x = numbers
-    y = list()
-    for i in range(len(numbers)):
-        print(f'iter: {i} - sum{sum}')
-        sum += freq_range[i]
-        y.append(sum)
-    plt.plot(x,y)
-    plt.show()
-
-function(data)
 
 
 
