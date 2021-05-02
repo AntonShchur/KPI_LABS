@@ -1,0 +1,111 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import prettytable as pt
+
+
+while True:
+    print('Лаб №1')
+    try:
+        left_bound = float(input('Введіть ліву сторону інтрервалу: '))
+        right_bound = float(input('Введіть праву сторону інтрервалу: '))
+        step = float(input('Введіть крок: '))
+        if left_bound < right_bound:
+            break
+        else:
+            print('Ліва границя повинна бути менша за праву.')
+    except ValueError:
+        print('Введені дані некоректні.')
+
+
+# Дана функція
+def function(x):
+    return x / np.cos(x)
+
+
+def def_function(x):
+    return (x * np.sin(x) / (np.cos(x) ** 2)) + (1 / np.cos(x))
+
+
+# Знаходження особливиз точок за ОДЗ при х != np.pi / 2 + np.pi * n
+def dot(n):
+    if (np.pi / 2 + np.pi * n) <= right_bound and (np.pi / 2 + np.pi * n) >= left_bound:
+        special_dots.append(np.pi / 2 + np.pi * n)
+n=0
+special_dots = []
+if right_bound <= 0:
+    while (np.pi/2+np.pi*n) >= left_bound:
+        dot(n)
+        n -= 1
+elif left_bound >= 0:
+    while (np.pi/2+np.pi*n) <= right_bound:
+        dot(n)
+        n += 1
+else:
+    while (np.pi/2+np.pi*n) >= left_bound:
+        dot(n)
+        n -= 1
+    n=1
+    while (np.pi/2+np.pi*n) <= right_bound:
+        dot(n)
+        n += 1
+special_dots.sort()
+for i in range(0, len(special_dots)):
+    special_dots[i] = round(special_dots[i], 2)
+print('Особливі точки:')
+print(special_dots)
+
+# Задання х-координат за допомогою заданих інтервалів та кроку
+x = np.arange(left_bound, right_bound, 0.001)
+
+# Задання у-координат через х
+y = function(x)
+dy = def_function(x)
+# Знаходження аргументів, при яких значення функції прямує до нескінченності
+inf_x = np.where(np.isclose(0, 1/y, rtol=0.001, atol=0.001))
+# Призначаємо У значення NaN для правильного відображення графіку
+y[inf_x] = np.nan
+# Знайдемо Х, де похідна від У дорівнює 0
+zero_def_x = np.where(np.isclose(0, dy, rtol=0.1, atol=0.1))
+# Задання осей та їх позицій
+axes = plt.gca()
+axes.spines['left'].set_position('zero')
+axes.spines['bottom'].set_position('zero')
+axes.spines['top'].set_visible(False)
+axes.spines['right'].set_visible(False)
+# Додавання оформлення графіка, надписів
+plt.title('Графік функції y = x / cos(x)')
+plt.xlabel('Вісь Х - незалежна величина')
+axes.xaxis.set_label_coords(0.5, -0.03)
+plt.ylabel('Вісь Y - залежна величина')
+axes.yaxis.set_label_coords(-0.05, 0.5)
+# Налаштування відображення графіка відносно заданих даних
+a = (np.abs(left_bound)+np.abs(right_bound))
+plt.axis([left_bound, right_bound, -a, a])
+# Задання сітки
+plt.grid(True)
+# Надаємо графіку координати х та у
+
+plt.plot(x, y, c='black')
+# Точка перетину графіка з віссю Х
+plt.scatter(0, 0, c='red')
+# Відображаємо точки де похідна функції дорівнює 0
+plt.scatter(x[zero_def_x], y[zero_def_x], c='blue')
+# Виводимо вертикальні асимптоти
+for z in special_dots:
+    # '--' надає стиль асимптотам
+    plt.axline((z, -10*10), (z, 10*10), ls='--')
+# Виведення графіка
+plt.show()
+
+
+# Таблиця з даними
+table = pt.PrettyTable()
+# Значення необхідних координат для відображення таблиці враховуючи введені дані
+x = np.arange(left_bound, right_bound+1,step)
+y = function(x)
+print('Таблиця значеннь')
+table.add_column('X', np.round(x, 2))
+table.add_column('Y', np.round(y, 2))
+# Виводимо таблицю
+print(table)
+

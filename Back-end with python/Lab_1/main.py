@@ -24,9 +24,10 @@ def function(x):
 
 num = int((right_bound - left_bound) / step)
 
-x = np.linspace(start=left_bound, stop=right_bound, num=1000)
+x = np.arange(left_bound, right_bound, 0.001)
+print(x)
 y = function(x)
-axes = plt.gca()
+axes = plt.subplot()
 axes.spines['left'].set_position('center')
 axes.spines['bottom'].set_position('center')
 axes.spines['top'].set_visible(False)
@@ -39,10 +40,20 @@ axes.yaxis.set_label_coords(-0.05, 0.5)
 
 plt.axis([left_bound * 2, right_bound * 2, left_bound * 2, right_bound * 2])
 plt.grid(True)
-plt.plot(x, y)
+plt.plot(x, y, 'k--')
 plt.scatter(0, 0, c='red')
 
 plt.show()
+
+table = pt.PrettyTable()
+x = np.arange(left_bound, right_bound+1,step)
+y = function(x)
+print('Таблиця значеннь')
+table.add_column('X', np.round(x, 2))
+table.add_column('Y', np.round(y, 2))
+print(table)
+
+
 
 
 

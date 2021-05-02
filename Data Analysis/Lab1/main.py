@@ -32,7 +32,7 @@ def variation_range(input_array):
            list(freq_var_range.values())
 
 
-s1, s2, f1 = variation_range(data)
+# s1, s2, f1 = variation_range(data)
 
 
 def histogram(input_array, intervals_count, draw_histogram=True):
@@ -83,7 +83,7 @@ def numerical_characteristic(input_data):
     return mode, median, mean, scope, Q1, Q2, Q3, Q_scope, variance, std
 
 
-numerical_characteristic(data)
+# numerical_characteristic(data)
 
 
 def ECD_function(input_data):
@@ -102,10 +102,13 @@ def ECD_function(input_data):
     plt.show()
 
 
-ECD_function(data)
+# ECD_function(data)
 
 
 
+def moment_method(input_data):
+    mean = st.mean(input_data)
+    std = st.stdev(input_data)
 
 
 
